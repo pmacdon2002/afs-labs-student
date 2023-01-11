@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment
+  name: db-deployment
   namespace: pmacdonald
   labels:
-    app: app
+    app: db
 spec:
   replicas: 1
   strategy:
@@ -12,17 +12,17 @@ spec:
   minReadySeconds: 20
   selector:
     matchLabels:
-      app: app
+      app: db
   template:
     metadata:
       labels:
-        app: app
+        app: db
     spec:
       containers:
       - envFrom:
         - secretRef:
             name: db-secret
-        name: app-deployment
+        name: db-deployment
         image: harbor.dev.afsmtddso.com/pmacdonald-harbor-project/db@sha256:204dd5eb1108e6f54a7819aae5588d855ba4fd08e35b55795012074728b9a70b
         ports:
-        - containerPort: 5000
+        - containerPort: 5432
