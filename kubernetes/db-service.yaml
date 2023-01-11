@@ -4,7 +4,7 @@ metadata:
   name: db-service
   namespace: pmacdonald
 spec:
-  type: clusterIP
+  type: ClusterIP
   selector:
     app: db
   ports:
